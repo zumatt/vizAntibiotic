@@ -48,7 +48,6 @@ function setup() {
   numBalls = abDimension.length;
   
   for (let i = 0; i < numBalls; i++){
-    var speed = random(-3,4);
       makeawarePeople[i] = new Ball(
         abDimension[i],   //Dimension
         random(width),    //Random is ok forever
