@@ -16,8 +16,9 @@ var numBalls;
 let colors = ["#FF3A17", "#ABABAB", "#FF46ED"];
 var antibioticDimension = 25;
 let ballMoving = true;
+let anyCollision = false;
 let button;
-let ballStopped = false;
+let buttonActive = false;
 
 let font, fontsize = 17;
 
@@ -87,14 +88,18 @@ function draw() {
 
   if (!ballMoving){
     push();
-    noFill();
-    strokeWeight(1);
-    stroke(colors[0]);
-    square(50,50,250);
-    stroke(colors[1]);
-    square(width/2 - 125,height - 300,250);
-    stroke(colors[2]);
-    square(width - 300,50,250);
+    fill('black');
+    //strokeWeight(1);
+    //stroke(colors[0]);
+    //square(50,50,250);
+    textAlign(LEFT, TOP);
+    text("YES", 50,320);
+    //stroke(colors[1]);
+    //square(width/2 - 125,height - 300,250);
+    text("NO", width/2 - 125,height - 30);
+    //stroke(colors[2]);
+    //square(width - 300,50,250);
+    text("NOT SURE", width - 300,320);
     pop();
   }
   
@@ -103,9 +108,12 @@ function draw() {
     if (ballMoving){
       makeawarePeople[i].move();
       makeawarePeople[i].bounce();
-      //if(!ballStopped){
-        makeawarePeople[i].collide();
-      //}
+      if(makeawarePeople[i].selected){
+        anyCollision = true;
+        makeawarePeople[i].collided();
+      }else if (!anyCollision){
+        makeawarePeople[i].checkCollision();
+      }
     }
   }
 
@@ -120,6 +128,7 @@ class Ball {
     this.dimension = dimension;
     var colorNumber = int(abColor);
     this.color = colors[colorNumber];
+    this.selected = false;
   }
 
   display() {
@@ -143,45 +152,58 @@ class Ball {
     }
   }
 
-  collide(){
+  checkCollision(){
     this.hit = collideCircleCircle(mouseX, mouseY, antibioticDimension+10, this.position.x, this.position.y, antibioticDimension);
     
       if (this.hit){
-        push();
-        stroke('black');
-        strokeWeight(2);
-        line(mouseX-20,mouseY,mouseX+20,mouseY);
-        line(mouseX,mouseY-20,mouseX,mouseY+20);
-        pop();
-        if(!ballStopped){
-          noCursor();
-          //console.log("line drawn");
-          if (mouseIsPressed){
-            console.log("hit press");
-            this.velocity = -this.velocity;
-            ballStopped = true;
-          }
-        }
-      } else {
-        cursor();
-        this.velocity = this.originalVelocity;
-        ballStopped = false;
+        console.log("hit");
+        this.selected = true;
       }
     }
+
+  collided(){
+    this.hit = collideCircleCircle(mouseX, mouseY, antibioticDimension+10, this.position.x, this.position.y, antibioticDimension);
+    noCursor();
+    push();
+    stroke('black');
+    strokeWeight(2);
+    line(mouseX-20,mouseY,mouseX+20,mouseY);
+    line(mouseX,mouseY-20,mouseX,mouseY+20);
+    pop();
+    push();
+    fill('black');
+    text(this.color, mouseX + 30, mouseY + 30);
+    pop();
+    this.velocity = -this.velocity;
+    if(!this.hit){
+      cursor();
+      console.log("Not hitted anymore");
+      this.selected = false;
+      anyCollision = false;
+      this.velocity = this.originalVelocity;
+    }
+  }
   }
 
 function onButtonClick(){
-  button.addClass("pressed");
-  ballMoving = false;
-
-  for (let i = 0; i < numBalls; i++){
-    if (makeawarePeople[i].color === colors[0]){
-      makeawarePeople[i].position = createVector(random(50, 300),random(50, 300));
-    } else if (makeawarePeople[i].color === colors[1]){
-      makeawarePeople[i].position = createVector(random(width/2 - 125, width/2 + 125),random(height - 300, height - 50));
-    } else if (makeawarePeople[i].color === colors[2]){
-      makeawarePeople[i].position = createVector(random(width - 300, width - 50),random(50, 300));
+  if (!buttonActive){
+    buttonActive = true;
+    button.addClass("pressed");
+    ballMoving = false;
+  
+    for (let i = 0; i < numBalls; i++){
+      if (makeawarePeople[i].color === colors[0]){
+        makeawarePeople[i].position = createVector(random(50, 300),random(50, 300));
+      } else if (makeawarePeople[i].color === colors[1]){
+        makeawarePeople[i].position = createVector(random(width/2 - 125, width/2 + 125),random(height - 300, height - 50));
+      } else if (makeawarePeople[i].color === colors[2]){
+        makeawarePeople[i].position = createVector(random(width - 300, width - 50),random(50, 300));
+      }
     }
+  } else{
+    buttonActive = false;
+    ballMoving = true;
+    button.removeClass("pressed");
   }
 }
 
@@ -189,6 +211,5 @@ function keyPressed(){
   if (key == 'r'){
     ballMoving = true;
     button.removeClass("pressed");
-    ballStopped = false;
   }
 }
