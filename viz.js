@@ -1,7 +1,7 @@
 /*
    Visualizzazione dati per MAKEAWARE! - Spearhead.
 
-       Creato da Matteo Subet - Ultima versione del giorno 16 maggio 2023
+       Creato da Matteo Subet - Ultima versione del giorno 16 giugno 2023
 
    SUPSI - Scuola Universitaria della Svizzera Italiana
    DACD  - Dipartimento Architettura Costruzioni e Design
@@ -9,7 +9,7 @@
 
 */
 
-// Code based on array of bouncing balls with vectors in a class by 2sman
+// Code based on: array of bouncing balls with vectors in a class by 2sman
 
 let makeawarePeople = [];
 var numBalls = 23;
