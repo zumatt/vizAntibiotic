@@ -17,6 +17,12 @@ let colors = ["#FF3A17", "#ABABAB", "#FF46ED"];
 var antibioticDimension = 25;
 let ballMoving = true;
 
+let font, fontsize = 17;
+
+function preload(){
+  font = loadFont('font/SuisseIntl-Medium.otf');
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -58,13 +64,24 @@ function setup() {
         abColor[i]);     //Color from array color
   }
 
-  let button = createButton("Question 1");
-  button.position(20, height-50);
+  textFont(font);
+  textSize(fontsize);
+  textAlign(CENTER, CENTER);
+
+  let button = createButton("Is the antibiotic leaflet read?");
+  button.position(30, height-70);
   button.mousePressed(onButtonClick);
+  button.addClass("btn");
 }
 
 function draw() {
   background("#EFEFEF");
+
+  push();
+  textAlign(LEFT);
+  fill(0);
+  text("Exploring people's antibiotic consuption behaviour:", 30, height - 100);
+  pop();
 
   if (!ballMoving){
     push();
