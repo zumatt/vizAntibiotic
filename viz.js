@@ -18,6 +18,11 @@ var antibioticDimension = 25;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  console.log(abDimension);
+  console.log(abSpeedX);
+  console.log(abSpeedY);
+  console.log(abColor);
   
   for (let i = 0; i < numBalls; i++){
     var speed = random(-3,4);

@@ -1,0 +1,23 @@
+{
+    "title": "Ball Data from antibiotics questionnaire",
+    "items": [
+        {
+            "dimension": 30,
+            "speedX": -3,
+            "speedY": -1,
+            "color": 0
+        },
+        {
+            "dimension": 50,
+            "speedX": 3,
+            "speedY": 1,
+            "color": 1
+        },
+        {
+            "dimension": 80,
+            "speedX": -1,
+            "speedY": 4,
+            "color": 2
+        }
+    ]
+}
