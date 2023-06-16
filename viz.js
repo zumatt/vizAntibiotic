@@ -12,27 +12,50 @@
 // Code based on: array of bouncing balls with vectors in a class by 2sman
 
 let makeawarePeople = [];
-var numBalls = 23;
+var numBalls;
 let colors = ["#FF3A17", "#ABABAB", "#FF46ED"];
 var antibioticDimension = 25;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  console.log(abDimension);
-  console.log(abSpeedX);
-  console.log(abSpeedY);
-  console.log(abColor);
+  //Debug for JSON file
+  //console.log(abDimension); console.log(abSpeedX); console.log(abSpeedY); console.log(abColor);
+
+  abDimension.forEach((element, index) => {
+    if (element == undefined){
+      console.error("In the JSON file, under the dimension row a value is missing. Check the item number " + (index + 1));
+    }
+  });
+  abSpeedX.forEach((element, index) => {
+    if (element == undefined){
+      console.error("In the JSON file, under the speedX row a value is missing. Check the item number " + (index + 1));
+    }
+  });
+  abSpeedY.forEach((element, index) => {
+    if (element == undefined){
+      console.error("In the JSON file, under the speedY row a value is missing. Check the item number " + (index + 1));
+    }
+  });
+  abColor.forEach((element, index) => {
+    if (element == undefined){
+      console.error("In the JSON file, under the speedY row a value is missing. Check the item number " + (index + 1));
+    } else if (element >= 3){
+      console.error("To select the color insert a value between 0 and 2. In the item number " + (index + 1) + " you inserted the value " + element);
+    }
+  });
+
+  numBalls = abDimension.length;
   
   for (let i = 0; i < numBalls; i++){
     var speed = random(-3,4);
       makeawarePeople[i] = new Ball(
-        random(30, 80),   //Dimension
+        abDimension[i],   //Dimension
         random(width),    //Random is ok forever
         random(height),   //Random is ok forever
-        speed,            //Speed in x axis
-        speed,            //Speed in y axis
-        random(0,3));     //Color from array color
+        abSpeedX[i],            //Speed in x axis
+        abSpeedY[i],            //Speed in y axis
+        abColor[i]);     //Color from array color
   }
 }
 

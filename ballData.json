@@ -18,6 +18,12 @@
             "speedX": -1,
             "speedY": 4,
             "color": 2
+        },
+        {
+            "dimension": 40,
+            "speedX": 5,
+            "speedY": 4,
+            "color": 2
         }
     ]
 }
