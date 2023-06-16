@@ -15,6 +15,7 @@ let makeawarePeople = [];
 var numBalls;
 let colors = ["#FF3A17", "#ABABAB", "#FF46ED"];
 var antibioticDimension = 25;
+let ballMoving = true;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -56,15 +57,35 @@ function setup() {
         abSpeedY[i],            //Speed in y axis
         abColor[i]);     //Color from array color
   }
+
+  let button = createButton("Question 1");
+  button.position(20, height-50);
+  button.mousePressed(onButtonClick);
 }
 
 function draw() {
   background("#EFEFEF");
+
+  if (!ballMoving){
+    push();
+    noFill();
+    strokeWeight(1);
+    stroke(colors[0]);
+    square(50,50,250);
+    stroke(colors[1]);
+    square(width/2 - 125,height - 300,250);
+    stroke(colors[2]);
+    square(width - 300,50,250);
+    pop();
+  }
   
   for (let i = 0; i < numBalls; i++){
     makeawarePeople[i].display();
-    makeawarePeople[i].move();
-    makeawarePeople[i].bounce();
+    if (ballMoving){
+      console.log("Can move!");
+      makeawarePeople[i].move();
+      makeawarePeople[i].bounce();
+    }
   }
 
 }
@@ -97,6 +118,20 @@ class Ball {
     }
     if ((this.position.y > height) || (this.position.y < 0)) {
       this.velocity.y = this.velocity.y * -1;
+    }
+  }
+}
+
+function onButtonClick(){
+  ballMoving = false;
+
+  for (let i = 0; i < numBalls; i++){
+    if (makeawarePeople[i].color === colors[0]){
+      makeawarePeople[i].position = createVector(random(50, 300),random(50, 300));
+    } else if (makeawarePeople[i].color === colors[1]){
+      makeawarePeople[i].position = createVector(random(width/2 - 125, width/2 + 125),random(height - 300, height - 50));
+    } else if (makeawarePeople[i].color === colors[2]){
+      makeawarePeople[i].position = createVector(random(width - 300, width - 50),random(50, 300));
     }
   }
 }

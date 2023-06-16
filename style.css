@@ -4,4 +4,11 @@ html, body {
   }
   canvas {
     display: block;
-  }  
+  } 
+
+.btn{
+  z-index: 99;
+  position:fixed;
+  bottom: 10;
+  left: 10;
+}
