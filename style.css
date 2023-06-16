@@ -26,4 +26,9 @@ canvas {
   padding-left: 30px;
   padding-right: 30px;
   border-radius: 40px;
+  cursor: grab;
+}
+
+.pressed{
+  background-color: #FF46ED;
 }
