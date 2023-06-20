@@ -22,8 +22,11 @@ let buttonActive = false;
 
 let font, fontsize = 17;
 
+let textCursorPos = [];
+let highlineCursorText = 25;
+
 function preload(){
-  font = loadFont('font/SuisseIntl-Medium.otf');
+  font = loadFont("font/SuisseIntl-Medium.otf");
 }
 
 function setup() {
@@ -59,19 +62,20 @@ function setup() {
   
   for (let i = 0; i < numBalls; i++){
       makeawarePeople[i] = new Ball(
-        abDimension[i],   //Dimension
-        random(width),    //Random is ok forever
-        random(height),   //Random is ok forever
-        abSpeedX[i],            //Speed in x axis
-        abSpeedY[i],            //Speed in y axis
-        abColor[i]);     //Color from array color
+        abDimension[i],     //Dimension
+        random(width),      //Random is ok forever
+        random(height),     //Random is ok forever
+        abSpeedX[i],        //Speed in x axis
+        abSpeedY[i],        //Speed in y axis
+        abColor[i],         //Color from array color
+        questCluster1[i]);  //Cluster 1     
   }
 
   textFont(font);
   textSize(fontsize);
   textAlign(CENTER, CENTER);
 
-  button = createButton("Is the antibiotic leaflet read?");
+  button = createButton("Have you ever personally experienced Antimicrobial Resistance?");
   button.position(30, height-70);
   button.mousePressed(onButtonClick);
   button.addClass("btn");
@@ -88,7 +92,7 @@ function draw() {
 
   if (!ballMoving){
     push();
-    fill('black');
+    fill("black");
     //strokeWeight(1);
     //stroke(colors[0]);
     //square(50,50,250);
@@ -121,7 +125,7 @@ function draw() {
 
 
 class Ball {
-  constructor(dimension, tempX, tempY, tempXspeed, tempYspeed, abColor) {
+  constructor(dimension, tempX, tempY, tempXspeed, tempYspeed, abColor, questCluster1) {
     this.position = createVector(tempX, tempY);
     this.originalVelocity = createVector(tempXspeed, tempYspeed);
     this.velocity = createVector(tempXspeed, tempYspeed);
@@ -129,6 +133,7 @@ class Ball {
     var colorNumber = int(abColor);
     this.color = colors[colorNumber];
     this.selected = false;
+    this.cluster1 = questCluster1;
   }
 
   display() {
@@ -165,16 +170,71 @@ class Ball {
     this.hit = collideCircleCircle(mouseX, mouseY, antibioticDimension+10, this.position.x, this.position.y, antibioticDimension);
     noCursor();
     push();
-    stroke('black');
+    stroke("black");
     strokeWeight(2);
     line(mouseX-20,mouseY,mouseX+20,mouseY);
     line(mouseX,mouseY-20,mouseX,mouseY+20);
     pop();
     push();
-    fill('black');
-    text(this.color, mouseX + 30, mouseY + 30);
+    fill("black");
+    //Here the cursor will display the values for each ball
+      textAlign(LEFT, LEFT);
+      textCursorPos = [mouseX + 5, mouseY + 20];
+      
+      //Here the first answer
+      if(this.color === colors[0]){
+        text("Not", textCursorPos[0],textCursorPos[1]);
+      }else if(this.color === colors[1]){
+        text("Not sure", textCursorPos[0],textCursorPos[1]);
+      }else if(this.color === colors[2]){
+        text("Yes", textCursorPos[0],textCursorPos[1]);
+      }else{
+        console.error("Color error in JSON file -> Text not displayed");
+        console.error(this.color);
+      }
+
+      //Here the second answer
+      if(this.speed === 0.5){
+        text("I’ve never consumed antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 1){
+        text("More than 10 years ago ", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 1.5){
+        text("Between 10 and 5 years ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 2){
+        text("Between 5 and 1 year ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 2.5){
+        text("In the last year", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 3){
+        text("In the last six months", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 3.5){
+        text("I am currently under antibiotic treatment", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else{
+        console.error("Speed error in JSON file -> Text not displayed");
+        console.error(this.originalVelocity.x);
+      }
+
+      //Here the third answer
+      if(this.speed === 0.5){
+        text("I’ve never consumed antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 1){
+        text("More than 10 years ago ", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 1.5){
+        text("Between 10 and 5 years ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 2){
+        text("Between 5 and 1 year ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 2.5){
+        text("In the last year", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 3){
+        text("In the last six months", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else if(this.originalVelocity.x === 3.5){
+        text("I am currently under antibiotic treatment", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+      }else{
+        console.error("Speed error in JSON file -> Text not displayed");
+        console.error(this.originalVelocity.x);
+      }
+
     pop();
-    this.velocity = -this.velocity;
+    this.velocity = 0;
     if(!this.hit){
       cursor();
       console.log("Not hitted anymore");
@@ -192,11 +252,11 @@ function onButtonClick(){
     ballMoving = false;
   
     for (let i = 0; i < numBalls; i++){
-      if (makeawarePeople[i].color === colors[0]){
+      if (makeawarePeople[i].cluster1 === 2){
         makeawarePeople[i].position = createVector(random(50, 300),random(50, 300));
-      } else if (makeawarePeople[i].color === colors[1]){
+      } else if (makeawarePeople[i].cluster1 === 1){
         makeawarePeople[i].position = createVector(random(width/2 - 125, width/2 + 125),random(height - 300, height - 50));
-      } else if (makeawarePeople[i].color === colors[2]){
+      } else if (makeawarePeople[i].cluster1 === 0){
         makeawarePeople[i].position = createVector(random(width - 300, width - 50),random(50, 300));
       }
     }
@@ -208,7 +268,7 @@ function onButtonClick(){
 }
 
 function keyPressed(){
-  if (key == 'r'){
+  if (key == "r"){
     ballMoving = true;
     button.removeClass("pressed");
   }

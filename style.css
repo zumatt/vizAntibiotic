@@ -1,6 +1,6 @@
 @font-face {
-	font-family: 'SuisseIntl-Medium';
-	src: url('../font/suisseintl-medium-webfont.woff');
+	font-family: "SuisseIntl-Medium";
+	src: url("../font/suisseintl-medium-webfont.woff");
 }
 
 html, body {
@@ -20,7 +20,7 @@ canvas {
 }
 
 .btn{
-  font-family: 'SuisseIntl-Medium', sans-serif;
+  font-family: "SuisseIntl-Medium", sans-serif;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 30px;

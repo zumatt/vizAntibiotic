@@ -2,6 +2,7 @@ let abDimension = [];
 let abSpeedX = [];
 let abSpeedY = [];
 let abColor = [];
+let questCluster1 = [];
 
 document.addEventListener("DOMContentLoaded", function() {
   fetch("ballData.json")
@@ -16,11 +17,13 @@ function renderData(data) {
   abSpeedX = [];
   abSpeedY = [];
   abColor = [];
+  questCluster1 = [];
   
   data.items.forEach(item => {
       abDimension.push(item.dimension);
       abSpeedX.push(item.speedX);
       abSpeedY.push(item.speedY);
       abColor.push(item.color);
+      questCluster1.push(item.cluster1);
   });
 }

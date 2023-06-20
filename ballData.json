@@ -1,29 +1,166 @@
 {
-    "title": "Ball Data from antibiotics questionnaire",
+    "title": "Ball Data from antibiotics questionnarie",
     "items": [
-        {
-            "dimension": 30,
-            "speedX": -3,
-            "speedY": -1,
-            "color": 0
-        },
-        {
-            "dimension": 50,
-            "speedX": 3,
-            "speedY": 1,
-            "color": 1
-        },
-        {
-            "dimension": 80,
-            "speedX": -1,
-            "speedY": 4,
-            "color": 2
-        },
-        {
-            "dimension": 40,
-            "speedX": 5,
-            "speedY": 4,
-            "color": 2
-        }
-    ]
+   {
+        "dimension": 60,
+        "speedX": 1.5,
+        "speedY": 2.367648,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 60,
+        "speedX": 2,
+        "speedY": 3.156864,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 2,
+        "speedY": 3.156864,
+        "color": 1,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 2.5,
+        "speedY": 3.94608,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 60,
+        "speedX": 3,
+        "speedY": 4.735296,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 2.5,
+        "speedY": 3.94608,
+        "color": 0,
+        "cluster1": 0
+    },
+   {
+        "dimension": 60,
+        "speedX": 2,
+        "speedY": 3.156864,
+        "color": 2,
+        "cluster1": 1
+    },
+   {
+        "dimension": 60,
+        "speedX": 2,
+        "speedY": 3.156864,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 60,
+        "speedX": 3,
+        "speedY": 4.735296,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 2,
+        "speedY": 3.156864,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 60,
+        "speedX": 3,
+        "speedY": 4.735296,
+        "color": 2,
+        "cluster1": 2
+    },
+   {
+        "dimension": 60,
+        "speedX": 0.5,
+        "speedY": 0.789216,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 1.5,
+        "speedY": 2.367648,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 60,
+        "speedX": 2.5,
+        "speedY": 3.94608,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 60,
+        "speedX": 2,
+        "speedY": 3.156864,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 2.5,
+        "speedY": 3.94608,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 1.5,
+        "speedY": 2.367648,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 1.5,
+        "speedY": 2.367648,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 60,
+        "speedX": 1,
+        "speedY": 1.578432,
+        "color": 1,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 3,
+        "speedY": 4.735296,
+        "color": 1,
+        "cluster1": 1
+    },
+   {
+        "dimension": 40,
+        "speedX": 1,
+        "speedY": 1.578432,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 40,
+        "speedX": 1,
+        "speedY": 1.578432,
+        "color": 2,
+        "cluster1": 0
+    },
+   {
+        "dimension": 60,
+        "speedX": 1,
+        "speedY": 1.578432,
+        "color": 2,
+        "cluster1": 1
+    }
+]
 }
