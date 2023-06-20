@@ -128,7 +128,7 @@ class Ball {
   constructor(dimension, tempX, tempY, tempXspeed, tempYspeed, abColor, questCluster1) {
     this.position = createVector(tempX, tempY);
     this.originalVelocity = createVector(tempXspeed, tempYspeed);
-    this.velocity = createVector(tempXspeed, tempYspeed);
+    this.velocity = createVector(tempXspeed/2.5, tempYspeed/2.5);
     this.dimension = dimension;
     var colorNumber = int(abColor);
     this.color = colors[colorNumber];
@@ -193,11 +193,11 @@ class Ball {
       
       //Here the first answer
       if(this.color === colors[0]){
-        text("I don't know what AMR is", textCursorPos[0],textCursorPos[1]);
+        text("Color: I don't know what AMR is", textCursorPos[0],textCursorPos[1]);
       }else if(this.color === colors[1]){
-        text("I'm not sure what AMR is", textCursorPos[0],textCursorPos[1]);
+        text("Color: I'm not sure what AMR is", textCursorPos[0],textCursorPos[1]);
       }else if(this.color === colors[2]){
-        text("I know what AMR is", textCursorPos[0],textCursorPos[1]);
+        text("Color: I know what AMR is", textCursorPos[0],textCursorPos[1]);
       }else{
         console.error("Color error in JSON file -> Text not displayed");
         console.error(this.color);
@@ -205,19 +205,19 @@ class Ball {
 
       //Here the second answer
       if(this.originalVelocity.x === 0.1 || this.originalVelocity.x === -0.1){
-        text("I’ve never consumed antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        text("Velocity: I’ve never consumed antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText);
       }else if(this.originalVelocity.x === 1.5 || this.originalVelocity.x === -1.5){
-        text("I consumed the last antibioticics more than 10 years ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        text("Velocity: I consumed the last antibioticics more than 10 years ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
       }else if(this.originalVelocity.x === 3 || this.originalVelocity.x === -3){
-        text("I consumed the last antibioticics between 10 and 5 years ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        text("Velocity: I consumed the last antibioticics between 10 and 5 years ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
       }else if(this.originalVelocity.x === 4.5 || this.originalVelocity.x === -4.5){
-        text("I consumed the last antibioticics between 5 and 1 year ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        text("Velocity: I consumed the last antibioticics between 5 and 1 year ago", textCursorPos[0],textCursorPos[1]+highlineCursorText);
       }else if(this.originalVelocity.x === 6 || this.originalVelocity.x === -6){
-        text("I've consumed the last antibioticics in the last year", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        text("Velocity: I've consumed the last antibioticics in the last year", textCursorPos[0],textCursorPos[1]+highlineCursorText);
       }else if(this.originalVelocity.x === 7.5 || this.originalVelocity.x === -7.5){
-        text("I've consumed the last antibioticics in the last six months", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        text("Velocity: I've consumed the last antibioticics in the last six months", textCursorPos[0],textCursorPos[1]+highlineCursorText);
       }else if(this.originalVelocity.x === 10 || this.originalVelocity.x === -10){
-        text("I am currently under antibiotic treatment", textCursorPos[0],textCursorPos[1]+highlineCursorText);
+        text("Velocity: I am currently under antibiotic treatment", textCursorPos[0],textCursorPos[1]+highlineCursorText);
       }else{
         console.error("Speed error in JSON file -> Text not displayed");
         console.error(this.originalVelocity.x);
@@ -225,19 +225,19 @@ class Ball {
 
       //Here the third answer
       if(this.dimension === 110){
-        text("I don't want to consume antibiotics for any reason", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        text("Dimension: I don't want to consume antibiotics for any reason", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
       }else if(this.dimension === 95){
-        text("I don’t take antibiotics even if prescribed", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        text("Dimension: I don’t take antibiotics even if prescribed", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
       }else if(this.dimension === 80){
-        text("I do my best to avoid antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        text("Dimension: I do my best to avoid antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
       }else if(this.dimension === 65){
-        text("I look for alternatives to antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        text("Dimension: I look for alternatives to antibiotics", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
       }else if(this.dimension === 50){
-        text("I follow the prescription", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        text("Dimension: I follow the prescription", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
       }else if(this.dimension === 35){
-        text("I take antibiotics even without prescription", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        text("Dimension: I take antibiotics even without prescription", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
       }else if(this.dimension === 20){
-        text("I take antibiotics for prevention", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
+        text("Dimension: I take antibiotics for prevention", textCursorPos[0],textCursorPos[1]+highlineCursorText+highlineCursorText);
       }else{
         console.error("Dimension error in JSON file -> Text not displayed");
         console.error(this.dimension);
