@@ -45,11 +45,6 @@ function setup() {
       console.error("In the JSON file, under the speedX row a value is missing. Check the item number " + (index + 1));
     }
   });
-  abSpeedY.forEach((element, index) => {
-    if (element == undefined){
-      console.error("In the JSON file, under the speedY row a value is missing. Check the item number " + (index + 1));
-    }
-  });
   abColor.forEach((element, index) => {
     if (element == undefined){
       console.error("In the JSON file, under the speedY row a value is missing. Check the item number " + (index + 1));
@@ -66,7 +61,7 @@ function setup() {
         random(width),      //Random is ok forever
         random(height),     //Random is ok forever
         abSpeedX[i],        //Speed in x axis
-        abSpeedY[i],        //Speed in y axis
+        random(abSpeedX[i]-.5, abSpeedX[i]+.5),        //Speed in y axis
         abColor[i],         //Color from array color
         questCluster1[i]);  //Cluster 1     
   }
@@ -112,13 +107,13 @@ function draw() {
     if (ballMoving){
       makeawarePeople[i].move();
       makeawarePeople[i].bounce();
+    }
       if(makeawarePeople[i].selected){
         anyCollision = true;
         makeawarePeople[i].collided();
       }else if (!anyCollision){
         makeawarePeople[i].checkCollision();
       }
-    }
   }
 
 }
@@ -128,7 +123,7 @@ class Ball {
   constructor(dimension, tempX, tempY, tempXspeed, tempYspeed, abColor, questCluster1) {
     this.position = createVector(tempX, tempY);
     this.originalVelocity = createVector(tempXspeed, tempYspeed);
-    this.velocity = createVector(tempXspeed/2.5, tempYspeed/2.5);
+    this.velocity = createVector(tempXspeed, tempYspeed);
     this.dimension = dimension;
     var colorNumber = int(abColor);
     this.color = colors[colorNumber];
@@ -172,6 +167,7 @@ class Ball {
     
       if (this.hit){
         console.log("hit");
+        this.originalVelocity = this.velocity;
         this.selected = true;
       }
     }
@@ -251,6 +247,7 @@ class Ball {
       this.selected = false;
       anyCollision = false;
       this.velocity = this.originalVelocity;
+      console.log(this.velocity);
     }
   }
   }
@@ -260,16 +257,54 @@ function onButtonClick(){
     buttonActive = true;
     button.addClass("pressed");
     ballMoving = false;
-  
+    var ballsCluster1 = [];
+    var ballsCluster2 = [];
+    var ballsCluster3 = [];
+
     for (let i = 0; i < numBalls; i++){
       if (makeawarePeople[i].cluster1 === 2){
+        ballsCluster1.push(makeawarePeople[i]);
         makeawarePeople[i].position = createVector(random(50, 300),random(50, 300));
       } else if (makeawarePeople[i].cluster1 === 1){
+        ballsCluster2.push(makeawarePeople[i]);
         makeawarePeople[i].position = createVector(random(width/2 - 125, width/2 + 125),random(height - 300, height - 50));
       } else if (makeawarePeople[i].cluster1 === 0){
+        ballsCluster3.push(makeawarePeople[i]);
         makeawarePeople[i].position = createVector(random(width - 300, width - 50),random(50, 300));
       }
     }
+
+    for(let i = 0; i < ballsCluster1.length; i++){
+      if (i >= 1){
+        var distance = dist(ballsCluster1[i].position.x, ballsCluster1[i].position.y, ballsCluster1[i-1].position.x, ballsCluster1[i-1].position.y);
+        console.log("The distance of the ball nr " + i + " is " + distance);
+        while (distance <= ballsCluster1[i].dimension){
+          ballsCluster1[i].position = createVector(random(50, 300),random(50, 300));
+        }
+      }
+    }
+
+    for(let i = 0; i < ballsCluster2.length; i++){
+      if (i >= 1){
+        var distance = dist(ballsCluster2[i].position.x, ballsCluster2[i].position.y, ballsCluster2[i-1].position.x, ballsCluster2[i-1].position.y);
+        console.log("The distance of the ball nr " + i + " is " + distance);
+        while (distance <= ballsCluster2[i].dimension){
+          ballsCluster2[i].position = createVector(random(width/2 - 125, width/2 + 125),random(height - 300, height - 50));
+        }
+      }
+    }
+    
+    /*
+    for(let i = 0; i < ballsCluster3.length; i++){
+      if (i >= 1){
+        var distance = dist(ballsCluster3[i].position.x, ballsCluster3[i].position.y, ballsCluster3[i-1].position.x, ballsCluster3[i-1].position.y);
+        while (distance <= ballsCluster3[i].dimension){
+          ballsCluster3[i].position = createVector(random(width - 300, width - 50),random(50, 300));
+        }
+      }
+    }
+    */
+
   } else{
     buttonActive = false;
     ballMoving = true;
